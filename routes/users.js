@@ -3,9 +3,6 @@ const router = express.Router();
 const {getUsers, getPosts, deleteUser} = require('../db');
 const {ObjectID} = require('mongodb');
 
-const users = require("../db/users.json");
-const posts = require("../db/posts.json");
-
 router.get("/", async (req, res) => {
   const query = req.query.search ? {name: req.query.search} : {};
   (await getUsers())
@@ -37,6 +34,9 @@ router.get("/:id/posts", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const userId = ObjectID.createFromHexString(req.params.id);
   (await deleteUser(userId))
+    .deleteOne({
+      _id: id,
+    })
     .toArray((err, docs) => {
       res.json(docs);
     });

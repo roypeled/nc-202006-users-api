@@ -17,16 +17,8 @@ function getPosts() {
   return connect('posts');
 }
 
-function deleteUser(id) {
-  (await getUsers())
-    .deleteOne({
-      _id: id,
-    });
-}
-
 module.exports = {
   connect,
   getUsers,
   getPosts,
-  deleteUser,
 };

@@ -2,8 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const router = express.Router();
 
-const posts = require("../db/posts.json");
-const comments = require("../db/comments.json");
+const comments = []; // need to create a route for comments
 
 router.get("/", (req, res) => {
   res.send(posts);
