@@ -1,45 +1,44 @@
 const express = require("express");
 const router = express.Router();
-const {getUsers, getPosts, deleteUser} = require('../db');
 const {ObjectID} = require('mongodb');
+const {UserModel} = require('../models/users.model');
+const {PostModel} = require('../models/posts.model');
 
 router.get("/", async (req, res) => {
   const query = req.query.search ? {name: req.query.search} : {};
-  (await getUsers())
+  const docs = await UserModel
     .find(query)
-    .toArray((err, docs) => {
-      res.json(docs);
-    });
+    .exec();
+  res.json(docs);
 });
 
 router.get("/:id", async (req, res) => {
-  (await getUsers())
+  const docs = await UserModel
     .findOne({
       _id: ObjectID.createFromHexString(req.params.id),
-    }, (err, doc) => {
-      res.json(doc);
-    });
+    }, 'name address.geo').exec();
+  res.json(docs);
 });
 
 router.get("/:id/posts", async (req, res) => {
-  (await getPosts())
+  const docs = await PostModel
     .find({
-      userId: req.params.id,
+      user: req.params.id,
     })
-    .toArray((err, docs) => {
-      res.json(docs);
-    });
+    .populate('user')
+    .exec();
+  res.json(docs);
 });
 
 router.delete("/:id", async (req, res) => {
   const userId = ObjectID.createFromHexString(req.params.id);
-  (await deleteUser(userId))
+  await UserModel
     .deleteOne({
       _id: id,
-    })
-    .toArray((err, docs) => {
-      res.json(docs);
-    });
+    }).exec();
+  res.json({
+    error: 0,
+  });
 });
 
 module.exports = router;

@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 
-const usersRoute = require("./routes/users");
-const postsRoute = require("./routes/posts");
+const {connect} = require('./db');
+connect();
+
+const usersRoute = require("./routes/users.route");
+const postsRoute = require("./routes/posts.route");
 
 app.set("json spaces", 2);
 app.use(express.json());
