@@ -12,4 +12,4 @@ app.use(express.json());
 app.use("/users", usersRoute);
 app.use("/posts", postsRoute);
 
-app.listen(3000);
+app.listen(3001);

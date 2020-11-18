@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"cd server && nodemon index.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kindofone/nc-202006-users-api.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kindofone/nc-202006-users-api/issues"
+  },
+  "homepage": "https://github.com/kindofone/nc-202006-users-api#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongodb": "^3.6.2",
-    "mongoose": "^5.10.13"
+    "concurrently": "^5.3.0"
   }
 }
