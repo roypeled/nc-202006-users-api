@@ -6,7 +6,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("/users")
+    fetch("/api/users")
     .then(res => res.json())
     .then(data => setUsers(data));
   }, []);
