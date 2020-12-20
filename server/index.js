@@ -12,6 +12,6 @@ app.set("json spaces", 2);
 app.use(express.json());
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
-app.use("/", express.static(path.join(__dirname, 'build')));
+app.use("/", express.static(path.join(__dirname, '../client/build')));
 
 app.listen(3001);

@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild": "npm i && npm run install-client && npm run install-server",
-    "install-client": "cd client && npm i",
-    "install-server": "cd server && npm i",
-    "start": "concurrently \"cd server && nodemon index.js\" \"cd client && npm start\"",
-    "build": "cd client && npm run build && mv build ../server/build"
+    "start": "cd server && node index.js",
+    "dev": "concurrently \"cd server && nodemon index.js\" \"cd client && npm start\"",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
