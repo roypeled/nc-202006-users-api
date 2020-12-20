@@ -14,4 +14,9 @@ app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
 app.use("/", express.static(path.join(__dirname, '../client/build')));
 
-app.listen(3001);
+let port = 3001;
+if(process.env.PORT) {
+    port = process.env.PORT;
+}
+
+app.listen(port);
